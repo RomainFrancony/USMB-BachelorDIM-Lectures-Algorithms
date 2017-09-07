@@ -86,3 +86,39 @@ result = reverse_table(my_list)
 message = "The reverse value of {list_values} is : {res}".format(list_values=initial_list, res=result)
 print(message)
 """
+
+import numpy
+
+
+def roi_bbox(image_matrix):
+    list_x = []
+    list_y = []
+
+    rows_length = image_matrix.shape[0]
+    cols_length = image_matrix.shape[1]
+
+    for row in xrange(rows_length):
+        for col in xrange(cols_length):
+            if image_matrix[row][col] == 1:
+                list_x.append(row)
+                list_y.append(col)
+
+    a = b = c = d = 0
+    a = min(list_x)
+    b = min(list_y)
+    c = max(list_x)
+    d = max(list_y)
+    return numpy.array([[a, b], [a, d], [c, b], [c, d]])
+
+
+"""
+size_rows = 10
+size_cols = 10
+my_matrix = numpy.zeros([size_rows, size_cols], bool)
+my_matrix[3:4, 6:9] = numpy.ones([1, 3])
+my_matrix[2:4, 6:8] = numpy.ones([2, 2])
+
+result = roi_bbox(my_matrix)
+message = "The coordinates of the image's bounding box are : {result}" .format(result=result)
+print(message)
+"""
