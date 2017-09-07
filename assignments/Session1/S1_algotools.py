@@ -50,8 +50,39 @@ def max_value(list):
     return max, index_of_max
 
 
-# testing max_value function
+"""# testing max_value function
 my_list = [1, 2, 3, 4, -7]
 result = max_value(my_list)
 message = "The max value of {list_values} is : {res} at index : {res_index}".format(list_values=my_list, res=result[0], res_index=result[1])
 print(message)
+"""
+
+
+def reverse_table(list):
+    ##
+    # Basic function able to reverse a list
+    # @param list : the list to be scanned
+    # @throws a exception (ValueError) on an empty list
+
+    list_size = len(list)
+    # Throw exception if the list is empty
+    if list_size == 0:
+        raise ValueError("The list is empty")
+
+    # loop through the first half of the list and inverse his position
+    for index in xrange(list_size / 2):
+        saved_value = list[list_size - index - 1]
+        list[list_size - index - 1] = list[index]
+        list[index] = saved_value
+
+    return list
+
+
+"""# testing reverse_table function
+my_list = [1, 2, 3, 4, -7]
+# keep the initial list in str because we change it in the function
+initial_list = str(my_list)
+result = reverse_table(my_list)
+message = "The reverse value of {list_values} is : {res}".format(list_values=initial_list, res=result)
+print(message)
+"""
