@@ -91,12 +91,16 @@ import numpy
 
 
 def roi_bbox(image_matrix):
+    ##
+    # Basic function able to get bounding box of an image matrix
+    # @param image_matrix : he image matrix
     list_x = []
     list_y = []
 
     rows_length = image_matrix.shape[0]
     cols_length = image_matrix.shape[1]
 
+    # search all colored pixel
     for row in xrange(rows_length):
         for col in xrange(cols_length):
             if image_matrix[row][col] == 1:
