@@ -21,9 +21,10 @@ def average_above_zero(input_list):
 
     return moy
 
-
+""" #testing average above zero function
 my_list = [1, 2, 3, 4, -7]
 
 result = average_above_zero(my_list)
 message = "The average of positive samples of {list_values} is {res}" .format(list_values=my_list, res=result)
 print(message)
+"""
