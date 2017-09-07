@@ -47,12 +47,11 @@ def max_value(list):
         if item > max:
             max = item
             index_of_max = index
-    return max
+    return max, index_of_max
 
 
-"""#testing max_value function
+# testing max_value function
 my_list = [1, 2, 3, 4, -7]
 result = max_value(my_list)
-message = "The max value of {list_values} is : {res}".format(list_values=my_list, res=result)
+message = "The max value of {list_values} is : {res} at index : {res_index}".format(list_values=my_list, res=result[0], res_index=result[1])
 print(message)
-"""
