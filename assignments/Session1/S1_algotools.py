@@ -93,7 +93,7 @@ import numpy
 def roi_bbox(image_matrix):
     ##
     # Basic function able to get bounding box of an image matrix
-    # @param image_matrix : he image matrix
+    # @param image_matrix : the image matrix
     list_x = []
     list_y = []
 
@@ -125,4 +125,36 @@ my_matrix[2:4, 6:8] = numpy.ones([2, 2])
 result = roi_bbox(my_matrix)
 message = "The coordinates of the image's bounding box are : {result}" .format(result=result)
 print(message)
+"""
+import random
+
+
+def random_fill_sparse(table, vfill):
+    ##
+    # Basic function able tto fill a table
+    # @param table : the table
+    # @params vfill : number of item to fill
+    if table.shape[0] != table.shape[1]:
+        raise ValueError("The table is not square")
+
+    table_size = len(table) - 1
+    for i in range(vfill):
+        filled = False
+        while not (filled):
+            alea_x = random.randint(0, table_size)
+            alea_y = random.randint(0, table_size)
+            if table[alea_x][alea_y] == '':
+                table[alea_x][alea_y] = 'X'
+                filled = True
+
+    return table
+
+
+"""
+my_table = numpy.full([5, 5], '', dtype=str)
+fill = 5
+filled_table = random_fill_sparse(my_table, fill)
+message = 'The table with {fill} X'.format(fill=fill)
+print(message)
+print(filled_table)
 """
