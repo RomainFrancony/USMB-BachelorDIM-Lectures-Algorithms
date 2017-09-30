@@ -166,9 +166,34 @@ def remove_whitespace(table):
     # @param table : the string you want to remove space from
     return table.replace(" ", "")
 
+
 """
 message = ' hello world '
 my_table_nospace = remove_whitespace(message)
 print 'The initial message : {message}'.format(message=message)
 print 'the message without space : {new_table}'.format(new_table=my_table_nospace)
+"""
+
+from random import randint
+
+
+def shuffle(list):
+    ##
+    # Shuffle a list of items
+    # @param list : the list of items you want to shuffle
+    copy = list[:]
+    new_list = []
+    length = len(copy)
+    for i in range(length):
+        index = randint(0, len(copy) - 1)
+        new_list.append(copy[index])
+        del copy[index]
+
+    return new_list
+
+"""
+list = [1, 2, 3, 4, 5, 6]
+list_shuffle = shuffle(list)
+print 'Old list : {list}'.format(list=list)
+print 'New list : {list}'.format(list=list_shuffle)
 """
