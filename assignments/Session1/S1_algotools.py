@@ -158,3 +158,14 @@ message = 'The table with {fill} X'.format(fill=fill)
 print(message)
 print(filled_table)
 """
+
+
+def remove_whitespace(table):
+    return table.replace(" ", "")
+
+"""
+message = ' hello world '
+my_table_nospace = remove_whitespace(message)
+print 'The initial message : {message}'.format(message=message)
+print 'the message without space : {new_table}'.format(new_table=my_table_nospace)
+"""
