@@ -161,6 +161,9 @@ print(filled_table)
 
 
 def remove_whitespace(table):
+    ##
+    # Remove space from string
+    # @param table : the string you want to remove space from
     return table.replace(" ", "")
 
 """
