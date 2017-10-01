@@ -198,3 +198,71 @@ list_shuffle = shuffle(list)
 print 'Old list : {list}'.format(list=list)
 print 'New list : {list}'.format(list=list_shuffle)
 """
+
+"""
+Selective Sort
+a)
+10, 15, 7, 1, 3, 3, 9
+We start iterating over the vector
+1 is the minimum, we swap 10 and 1 and restart but from index 1
+
+the vector is now : 1, 15, 7, 10, 3, 3, 9
+3 is the minimum, we swap 15 and 3 and restart from index 2
+
+the vector is now : 1, 3, 7, 10, 15, 3, 9
+3 is the minimum, we swap 7 and 3 and restart from index 3
+
+the vector is now : 1, 3, 3, 10, 15, 7, 9
+7 is the minimum, we swap 10 and 7 and restart from index 4
+
+the vector is now : 1, 3, 3, 7, 15, 10, 9
+9 is the minimum, we swap 15 and 9 and restart from index 5
+
+we now have 1, 3, 3, 7, 9, 10, 15
+
+the last iteration doesn't change anything since the numbers are already in the right order
+
+we've iterated over the whole vector so it's now sorted
+
+b) No the number of iterations depend of the length of the vector, it will always do n-1 iterations
+
+c) we need 6 (n-1) iterations for sorting the whole vector (even if the're numbers already in the right index
+
+d) 5 permutations were applied (no permutation needed during the last iterations since the number were already in the right order)
+
+e) 7(7-1)/2 = 21 So 21 comparisons are applied
+
+f) The complexity of this algorithm is O(n^2)
+
+g) In the worst case of vector, we have
+n = 50 : (n-1) 49 permutation, 50(50-1)/2 = 1225 comparisons
+n = 100 : (n-1) 99 permutations, 100(100-1)/2 = 4950 comparisons
+n = 500 : (n-1) 499 permutations, 500(500-1)/2 = 124750 comparisons
+"""
+
+
+def sort_selective(list_in):
+    ##
+    # Sort selective function
+    # @param list_in : the list to sort
+    for i in xrange(len(list_in) - 1):
+        min_index = i
+        for j in xrange(i, len(list_in)):
+            if list_in[j] < list_in[min_index]:
+                min_index = j
+
+        if min_index != i:
+            swap = list_in[min_index]
+            list_in[min_index] = list_in[i]
+            list_in[i] = swap
+
+    return list_in
+
+
+"""
+list = [10, 15, 7, 1, 3, 3, 9]
+print 'List before sort : {list}'.format(list=list)
+
+sorted_list = sort_selective(list)
+print 'List after sort : {list}'.format(list=sorted_list)
+"""
