@@ -235,7 +235,7 @@ e) 7(7-1)/2 = 21 So 21 comparisons are applied
 f) The complexity of this algorithm is O(n^2)
 
 g) In the worst case of vector, we have
-n = 50 : (n-1) 49 permutation, 50(50-1)/2 = 1225 comparisons
+n = 50 : (n-1) 49 permutations, 50(50-1)/2 = 1225 comparisons
 n = 100 : (n-1) 99 permutations, 100(100-1)/2 = 4950 comparisons
 n = 500 : (n-1) 499 permutations, 500(500-1)/2 = 124750 comparisons
 """
@@ -264,5 +264,82 @@ list = [10, 15, 7, 1, 3, 3, 9]
 print 'List before sort : {list}'.format(list=list)
 
 sorted_list = sort_selective(list)
+print 'List after sort : {list}'.format(list=sorted_list)
+"""
+
+"""
+Bubble Sort
+a) 
+10, 15, 7, 1, 3, 3, 9
+we swap 15 and 7
+10, 7, 15, 1, 3, 3, 9
+we swap 15 and 1
+10, 7, 1, 15, 3, 3, 9
+we swap 15 and 3
+10, 7, 1, 3, 15, 3, 9
+we sap 15 and 3
+10, 7, 1, 3, 3, 15, 9
+we swap 15 and 9
+10, 7, 1, 3, 3, 9, 15
+
+We restart from the beginning
+we swap 10 and 7
+7, 10, 1, 3, 3, 9, 15
+we swap 10 and 1
+7, 1, 10, 3, 3, 9, 15
+we swap 10 and 3
+7, 1, 3, 10, 3, 9, 15
+we swap 10 and 3
+7, 1, 3, 3, 10, 9, 15
+we swap 10 and 9
+7, 1, 3, 3, 9, 10, 15
+
+We restart from the beginning
+we swap 7 and 1
+1, 7, 3, 3, 9, 10, 15
+we swap 7 and 3
+1, 3, 7, 3, 9, 10, 15
+we swap 7 and 3
+1, 3, 3, 7, 9, 10, 15
+
+No permutations needed, the vector is sorted
+
+
+b) Yes the number of iterations depend on the vector content
+
+c) 3 iterations are needed to sort the vector
+
+d) 13 permutations are applied
+
+e) 21 comparisons are applied
+
+f) The complexity of this algorithm is O(n^2)
+
+g) In the worst case, we have
+n = 50 : 1225-50 = 1175 permutations, 50(50-1)/2 = 1225 comparisons
+n = 100 : 4950 - 100 = 4850 permutations, 100(100-1)/2 = 4950 comparisons
+n = 500 : 124750 - 500 = 124250 permutations, 500(500-1)/2 = 124750 comparisons
+"""
+
+
+def sort_bubble(list_in):
+    ##
+    # Bubble selective function
+    # @param list_in : the list to sort
+    for i in xrange(0, len(list_in) - 1):
+        for j in xrange(0, len(list_in) - 1):
+            if list_in[j] > list_in[j + 1]:
+                swap = list_in[j + 1]
+                list_in[j + 1] = list_in[j]
+                list_in[j] = swap
+
+    return list_in
+
+
+"""
+list = [10, 15, 7, 1, 3, 3, 9]
+print 'List before sort : {list}'.format(list=list)
+
+sorted_list = sort_bubble(list)
 print 'List after sort : {list}'.format(list=sorted_list)
 """
