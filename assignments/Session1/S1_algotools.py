@@ -106,6 +106,7 @@ result = roi_bbox(my_matrix)
 message = "The coordinates of the image's bounding box are : {result}" .format(result=result)
 print(message)
 import random
+"""
 
 
 def random_fill_sparse(table, vfill):
