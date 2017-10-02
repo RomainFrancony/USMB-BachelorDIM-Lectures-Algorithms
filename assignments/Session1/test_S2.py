@@ -59,7 +59,25 @@ def test_max_value_negative_values():
 
 def test_max_value_empty_list():
     ##
-    # test max value with positive values
+    # test max value with empty list
     my_list = []
     with pytest.raises(ValueError):
         res = s1.max_value(my_list)
+
+
+# --------------------------------------------------
+
+
+def test_reverse_table_normal_values():
+    ##
+    # test reverse table with normal values
+    my_list = [1, 8, 8, -7, -48, -45]
+    assert s1.reverse_table(my_list) == [-45, -45, -7, 8, 8, 1]
+
+
+def test_reverse_table_empty_list():
+    ##
+    # test max value with empty list
+    my_list = []
+    with pytest.raises(ValueError):
+        res = s1.reverse_table(my_list)

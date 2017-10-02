@@ -67,15 +67,6 @@ def reverse_table(list):
     return list
 
 
-"""# testing reverse_table function
-my_list = [1, 2, 3, 4, -7]
-# keep the initial list in str because we change it in the function
-initial_list = str(my_list)
-result = reverse_table(my_list)
-message = "The reverse value of {list_values} is : {res}".format(list_values=initial_list, res=result)
-print(message)
-"""
-
 import numpy
 
 
