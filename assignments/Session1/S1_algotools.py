@@ -4,6 +4,9 @@
 
 
 def average_above_zero(input_list):
+    ##
+    # Get average of positive number in a list
+    # @param input_list : the list to be scanned
     positive_value_sum = 0
     positive_value_count = 0
 
@@ -17,18 +20,12 @@ def average_above_zero(input_list):
             print('This value is null : ' + str(item))
         else:
             print('This value is negative : ' + str(item))
+
+    if positive_value_count == 0:
+        return 0
+
     moy = float(positive_value_sum) / float(positive_value_count)
-
     return moy
-
-
-""" #testing average above zero function
-my_list = [1, 2, 3, 4, -7]
-
-result = average_above_zero(my_list)
-message = "The average of positive samples of {list_values} is {res}" .format(list_values=my_list, res=result)
-print(message)
-"""
 
 
 def max_value(list):
