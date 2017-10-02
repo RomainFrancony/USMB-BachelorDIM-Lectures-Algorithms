@@ -72,7 +72,7 @@ def test_reverse_table_normal_values():
     ##
     # test reverse table with normal values
     my_list = [1, 8, 8, -7, -48, -45]
-    assert s1.reverse_table(my_list) == [-45, -45, -7, 8, 8, 1]
+    assert s1.reverse_table(my_list) == [-45, -48, -7, 8, 8, 1]
 
 
 def test_reverse_table_empty_list():
@@ -81,3 +81,18 @@ def test_reverse_table_empty_list():
     my_list = []
     with pytest.raises(ValueError):
         res = s1.reverse_table(my_list)
+
+
+# --------------------------------------------------
+"""
+import numpy
+
+
+def test_roi_bbox_normal_values():
+    ##
+    # test reverse table with normal values
+    my_matrix = numpy.zeros([10, 10], bool)
+    my_matrix[3:4, 6:9] = numpy.ones([1, 3])
+    my_matrix[2:4, 6:8] = numpy.ones([2, 2])
+    assert s1.roi_bbox(my_matrix).all() == numpy.array([[2, 6], [2, 8], [3, 6], [3, 8]]).all()
+"""

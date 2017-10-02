@@ -59,7 +59,7 @@ def reverse_table(list):
         raise ValueError("The list is empty")
 
     # loop through the first half of the list and inverse his position
-    for index in xrange(list_size / 2):
+    for index in range(list_size / 2):
         saved_value = list[list_size - index - 1]
         list[list_size - index - 1] = list[index]
         list[index] = saved_value
@@ -81,8 +81,8 @@ def roi_bbox(image_matrix):
     cols_length = image_matrix.shape[1]
 
     # search all colored pixel
-    for row in xrange(rows_length):
-        for col in xrange(cols_length):
+    for row in range(rows_length):
+        for col in range(cols_length):
             if image_matrix[row][col] == 1:
                 list_x.append(row)
                 list_y.append(col)
@@ -105,7 +105,6 @@ my_matrix[2:4, 6:8] = numpy.ones([2, 2])
 result = roi_bbox(my_matrix)
 message = "The coordinates of the image's bounding box are : {result}" .format(result=result)
 print(message)
-"""
 import random
 
 
