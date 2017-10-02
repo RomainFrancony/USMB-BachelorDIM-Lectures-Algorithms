@@ -1,4 +1,9 @@
 # USMB-BachelorDIM-Lectures-Algorithms
+
+[![Coverage Status](https://coveralls.io/repos/github/RomainFrancony/USMB-BachelorDIM-Lectures-Algorithms/badge.svg?branch=master)](https://coveralls.io/github/RomainFrancony/USMB-BachelorDIM-Lectures-Algorithms?branch=master)
+
+[![Build Status](https://travis-ci.org/RomainFrancony/USMB-BachelorDIM-Lectures-Algorithms.svg?branch=master)](https://travis-ci.org/RomainFrancony/USMB-BachelorDIM-Lectures-Algorithms)
+
 Short courses on algorithms : practical recommendations to build solid, energy efficient and maintainable programs
 
 Those lessons are addressed to the "Développeur Informatique Multisupports" (DIM) Bachelor proposed at Université Savoie Mont Blanc in France.
