@@ -97,6 +97,7 @@ def roi_bbox(image_matrix):
     d = max(list_y)
     return numpy.array([[a, b], [a, d], [c, b], [c, d]])
 
+import random
 
 def random_fill_sparse(table, vfill):
     ##
@@ -105,6 +106,9 @@ def random_fill_sparse(table, vfill):
     # @params vfill : number of item to fill
     if table.shape[0] != table.shape[1]:
         raise ValueError("The table is not square")
+
+    if table.shape[0] * table.shape[1] < vfill:
+        raise ValueError("Too much vfill")
 
     table_size = len(table) - 1
     for i in range(vfill):

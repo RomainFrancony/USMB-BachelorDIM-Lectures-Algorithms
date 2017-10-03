@@ -110,3 +110,24 @@ def test_roi_bbox_one_point():
     my_matrix = numpy.zeros([10, 10], bool)
     my_matrix[1, 1] = 1
     assert s1.roi_bbox(my_matrix).all() == numpy.array([[1, 1], [1, 1], [1, 1], [1, 1]]).all()
+
+
+# --------------------------------------------------
+
+
+def test_random_fill_sparse_not_square_matrix():
+    ##
+    # test random fill sparse with no square matrix
+    my_table = numpy.full([5, 8], '', dtype=str)
+    fill = 5
+    with pytest.raises(ValueError):
+        res = s1.random_fill_sparse(my_table, fill)
+
+
+def test_random_fill_sparse_normal_value():
+    ##
+    # test random fill sparse with normal value
+    my_table = numpy.full([5, 5], '', dtype=str)
+    fill = 50
+    with pytest.raises(ValueError):
+        filled_table = s1.random_fill_sparse(my_table, fill)
