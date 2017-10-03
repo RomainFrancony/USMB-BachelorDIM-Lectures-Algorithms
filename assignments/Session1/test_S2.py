@@ -131,3 +131,26 @@ def test_random_fill_sparse_normal_value():
     fill = 50
     with pytest.raises(ValueError):
         filled_table = s1.random_fill_sparse(my_table, fill)
+
+
+# --------------------------------------------------
+
+def test_remove_whitespace_normal_value():
+    ##
+    # test remove whitespace with normal value
+    message = ' hello world '
+    assert s1.remove_whitespace(message) == 'helloworld'
+
+
+def test_remove_whitespace_no_space_value():
+    ##
+    # test remove whitespace with normal value
+    message = 'helloworld'
+    assert s1.remove_whitespace(message) == 'helloworld'
+
+
+def test_remove_whitespace_empty_value():
+    ##
+    # test remove whitespace with normal value
+    message = ''
+    assert s1.remove_whitespace(message) == ''

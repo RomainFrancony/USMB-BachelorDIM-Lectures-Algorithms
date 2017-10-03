@@ -97,7 +97,9 @@ def roi_bbox(image_matrix):
     d = max(list_y)
     return numpy.array([[a, b], [a, d], [c, b], [c, d]])
 
+
 import random
+
 
 def random_fill_sparse(table, vfill):
     ##
@@ -123,29 +125,17 @@ def random_fill_sparse(table, vfill):
     return table
 
 
-"""
-my_table = numpy.full([5, 5], '', dtype=str)
-fill = 5
-filled_table = random_fill_sparse(my_table, fill)
-message = 'The table with {fill} X'.format(fill=fill)
-print(message)
-print(filled_table)
-"""
-
-
 def remove_whitespace(table):
     ##
     # Remove space from string
     # @param table : the string you want to remove space from
-    return table.replace(" ", "")
+    delete_count = 0
+    for index, character in enumerate(table):
+        if character == ' ':
+            table = table[:index - delete_count] + table[index - delete_count + 1:]
+            delete_count += 1
+    return table
 
-
-"""
-message = ' hello world '
-my_table_nospace = remove_whitespace(message)
-print 'The initial message : {message}'.format(message=message)
-print 'the message without space : {new_table}'.format(new_table=my_table_nospace)
-"""
 
 from random import randint
 
