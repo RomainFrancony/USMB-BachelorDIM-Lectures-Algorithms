@@ -4,6 +4,8 @@
 
 import S1_algotools as s1
 import pytest
+import copy
+import numpy
 
 
 def test_average_above_zero_positive_values():
@@ -84,7 +86,7 @@ def test_reverse_table_empty_list():
 
 
 # --------------------------------------------------
-import numpy
+
 
 
 def test_roi_bbox_normal_values():
@@ -184,9 +186,6 @@ def test_selective_sort_empty_list():
     assert s1.sort_selective(list) == []
 
 
-import copy
-
-
 def test_selective_sort_positive_values():
     ##
     # test selective sort with empty list
@@ -209,3 +208,37 @@ def test_selective_sort_mixed_values():
     list = [-10, 2, -5, 85, -4, -6]
     list_copy = copy.deepcopy(list)
     assert s1.sort_selective(list) == sorted(list_copy)
+
+
+# --------------------------------------------------
+
+
+def test_bubble_sort_empty_list():
+    ##
+    # test selective sort with empty list
+    list = []
+    assert s1.sort_bubble(list) == []
+
+
+def test_bubble_sort_positive_values():
+    ##
+    # test selective sort with empty list
+    list = [10, 2, 5, 85, 4, 6]
+    list_copy = copy.deepcopy(list)
+    assert s1.sort_bubble(list) == sorted(list_copy)
+
+
+def test_bubble_sort_negative_values():
+    ##
+    # test selective sort with empty list
+    list = [-10, -2, -5, -85, -4, -6]
+    list_copy = copy.deepcopy(list)
+    assert s1.sort_bubble(list) == sorted(list_copy)
+
+
+def test_bubble_sort_mixed_values():
+    ##
+    # test selective sort with empty list
+    list = [-10, 2, -5, 85, -4, -6]
+    list_copy = copy.deepcopy(list)
+    assert s1.sort_bubble(list) == sorted(list_copy)

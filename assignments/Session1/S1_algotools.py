@@ -3,6 +3,12 @@
 # brief : a set of generic functions for data managements
 
 
+
+from random import randint
+import random
+import numpy
+
+
 def average_above_zero(input_list):
     ##
     # Get average of positive number in a list
@@ -67,9 +73,6 @@ def reverse_table(list):
     return list
 
 
-import numpy
-
-
 def roi_bbox(image_matrix):
     ##
     # Basic function able to get bounding box of an image matrix
@@ -96,9 +99,6 @@ def roi_bbox(image_matrix):
     c = max(list_x)
     d = max(list_y)
     return numpy.array([[a, b], [a, d], [c, b], [c, d]])
-
-
-import random
 
 
 def random_fill_sparse(table, vfill):
@@ -137,9 +137,6 @@ def remove_whitespace(table):
     return table
 
 
-from random import randint
-
-
 def shuffle(list):
     ##
     # Shuffle a list of items
@@ -153,6 +150,7 @@ def shuffle(list):
         del copy[index]
 
     return new_list
+
 
 """
 Selective Sort
@@ -213,14 +211,6 @@ def sort_selective(list_in):
 
     return list_in
 
-
-"""
-list = [10, 15, 7, 1, 3, 3, 9]
-print 'List before sort : {list}'.format(list=list)
-
-sorted_list = sort_selective(list)
-print 'List after sort : {list}'.format(list=sorted_list)
-"""
 
 """
 Bubble Sort
@@ -289,12 +279,3 @@ def sort_bubble(list_in):
                 list_in[j] = swap
 
     return list_in
-
-
-"""
-list = [10, 15, 7, 1, 3, 3, 9]
-print 'List before sort : {list}'.format(list=list)
-
-sorted_list = sort_bubble(list)
-print 'List after sort : {list}'.format(list=sorted_list)
-"""
