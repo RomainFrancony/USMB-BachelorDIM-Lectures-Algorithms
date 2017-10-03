@@ -172,3 +172,40 @@ def test_shuffle_normal_value():
     list = [1, 2, 5, 8, 4, 885, 42]
     list_shuffle = s1.shuffle(list)
     assert len(set(list_shuffle).intersection(list)) == len(list)
+
+
+# --------------------------------------------------
+
+
+def test_selective_sort_empty_list():
+    ##
+    # test selective sort with empty list
+    list = []
+    assert s1.sort_selective(list) == []
+
+
+import copy
+
+
+def test_selective_sort_positive_values():
+    ##
+    # test selective sort with empty list
+    list = [10, 2, 5, 85, 4, 6]
+    list_copy = copy.deepcopy(list)
+    assert s1.sort_selective(list) == sorted(list_copy)
+
+
+def test_selective_sort_negative_values():
+    ##
+    # test selective sort with empty list
+    list = [-10, -2, -5, -85, -4, -6]
+    list_copy = copy.deepcopy(list)
+    assert s1.sort_selective(list) == sorted(list_copy)
+
+
+def test_selective_sort_mixed_values():
+    ##
+    # test selective sort with empty list
+    list = [-10, 2, -5, 85, -4, -6]
+    list_copy = copy.deepcopy(list)
+    assert s1.sort_selective(list) == sorted(list_copy)
