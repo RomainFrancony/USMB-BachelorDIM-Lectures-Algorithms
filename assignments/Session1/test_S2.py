@@ -18,8 +18,8 @@ def test_average_above_zero_positive_values():
 def test_average_above_zero_mixed_values():
     ##
     # test average above zero with mixed values
-    my_list = [1, 2, 3, 4, -7]
-    assert s1.average_above_zero(my_list) == 2.5
+    my_list = [1, 7, 0, 4, -7]
+    assert s1.average_above_zero(my_list) == 4
 
 
 def test_average_above_zero_negative_values():
@@ -127,6 +127,16 @@ def test_random_fill_sparse_not_square_matrix():
 
 
 def test_random_fill_sparse_normal_value():
+    ##
+    # test random fill sparse with normal value
+    my_table = numpy.full([5, 5], '', dtype=str)
+    fill = 5
+    count = numpy.sum(s1.random_fill_sparse(my_table, fill) == 'X')
+
+    assert count == fill
+
+
+def test_random_fill_sparse_too_much_vfill():
     ##
     # test random fill sparse with normal value
     my_table = numpy.full([5, 5], '', dtype=str)
