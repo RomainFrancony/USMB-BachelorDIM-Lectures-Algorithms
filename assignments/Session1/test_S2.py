@@ -154,3 +154,21 @@ def test_remove_whitespace_empty_value():
     # test remove whitespace with normal value
     message = ''
     assert s1.remove_whitespace(message) == ''
+
+
+# --------------------------------------------------
+
+
+def test_shuffle_empty_value():
+    ##
+    # test shuffle with normal value
+    list = []
+    assert s1.shuffle(list) == []
+
+
+def test_shuffle_normal_value():
+    ##
+    # test shuffle with normal value
+    list = [1, 2, 5, 8, 4, 885, 42]
+    list_shuffle = s1.shuffle(list)
+    assert len(set(list_shuffle).intersection(list)) == len(list)

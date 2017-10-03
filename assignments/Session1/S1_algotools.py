@@ -154,14 +154,6 @@ def shuffle(list):
 
     return new_list
 
-
-"""
-list = [1, 2, 3, 4, 5, 6]
-list_shuffle = shuffle(list)
-print 'Old list : {list}'.format(list=list)
-print 'New list : {list}'.format(list=list_shuffle)
-"""
-
 """
 Selective Sort
 a)
