@@ -3,6 +3,9 @@
 # brief : Dice game
 
 
+from random import randint
+
+
 def dice_game():
     ##
     # Simple Dice game
@@ -11,34 +14,31 @@ def dice_game():
     score_computer = 0
     step = 1
 
-    print 'The dice game is gonna start'
+    print('The dice game is gonna start')
 
     while score_user < 100 and score_computer < 100:
-        print '---------------------------------'
-        print 'Step {step} : you throw the dice'.format(step=step)
+        print('---------------------------------')
+        print('Step {step} : you throw the dice'.format(step=step))
         score_user += dice_game_step_player()
         if score_user >= 100:
             break
 
-        print 'The computer is going to play'
+        print('The computer is going to play')
         score_computer += dice_game_step_computer()
 
-        print '---------------------------------'
-        print 'End of the round, the score is :'
-        print 'You : {score}'.format(score=score_user)
-        print 'Computer : {score}'.format(score=score_computer)
+        print('---------------------------------')
+        print('End of the round, the score is :')
+        print('You : {score}'.format(score=score_user))
+        print('Computer : {score}'.format(score=score_computer))
         step += 1
 
-    print 'END OF THE GAME'
+    print('END OF THE GAME')
     if score_user > score_computer:
-        print 'You win {score_user} - {score_computer}'.format(score_user=score_user, score_computer=score_computer)
+        print('You win {score_user} - {score_computer}'.format(score_user=score_user, score_computer=score_computer))
         return True
     else:
-        print 'You lose {score_user} - {score_computer}'.format(score_user=score_user, score_computer=score_computer)
+        print('You lose {score_user} - {score_computer}'.format(score_user=score_user, score_computer=score_computer))
         return False
-
-
-from random import randint
 
 
 def dice_game_step_player():
@@ -50,14 +50,14 @@ def dice_game_step_player():
         score = randint(1, 6)
 
         if score == 1:
-            print 'You got 1 ! Better luck next time.'
+            print('You got 1 ! Better luck next time.')
             score_total = 1
             keep_throwing = False
             break
         else:
             score_total += score
 
-        print 'You obtain {score}, you now have {total} point(s)'.format(score=score, total=score_total)
+        print('You obtain {score}, you now have {total} point(s)'.format(score=score, total=score_total))
 
         input = ''
         while input != 'o' and input != 'n':
@@ -89,8 +89,3 @@ def dice_game_step_computer():
         keep_throwing = False
 
     return score_total
-
-
-"""
-dice_game()
-"""
