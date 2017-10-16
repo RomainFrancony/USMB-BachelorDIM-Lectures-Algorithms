@@ -4,10 +4,11 @@
 
 import pika
 import os
+import time
 import argparse
 
 parser = argparse.ArgumentParser()
-parser.add_argument("-concurrency", action='store_true', help='Activate persistence')
+parser.add_argument("-concurrency", action='store_true', help='Activate concurrency')
 concurrency = parser.parse_args().concurrency
 
 amqp_url = "amqp://taumfzlk:P1gefgPdpz3UKtJ7aivorzL8tzpMALuX@lark.rmq.cloudamqp.com/taumfzlk"
@@ -30,6 +31,10 @@ def callback(ch, method, properties, body):
     if concurrency:
         ch.basic_ack(delivery_tag=method.delivery_tag)
 
+
+# Better separation of the messages between the readers
+if concurrency:
+    channel.basic_qos(prefetch_count=1)
 
 channel.basic_consume(callback,
                       queue='presentation',

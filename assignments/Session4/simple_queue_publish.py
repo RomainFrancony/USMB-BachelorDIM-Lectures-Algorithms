@@ -7,7 +7,7 @@ import os
 import argparse
 
 parser = argparse.ArgumentParser()
-parser.add_argument("-concurrency", action='store_true', help='Activate persistence')
+parser.add_argument("-concurrency", action='store_true', help='Activate concurrency')
 parser.add_argument("-n", "--sendmany", type=int, default=1)
 concurrency = parser.parse_args().concurrency
 nb_message = parser.parse_args().sendmany
