@@ -7,6 +7,7 @@ import os
 import msgpack
 import msgpack_numpy as m
 import sys
+
 sys.path.insert(0, '../Session3')
 import S3_imgproc_tools as image_process
 import numpy as np
@@ -17,6 +18,26 @@ url = os.environ.get('CLOUDAMQP_URL', amqp_url)
 params = pika.URLParameters(url)
 params.socket_timeout = 5
 connection = pika.BlockingConnection(params)
+
+# Available filters list
+filters_dictionary = {'invert': image_process.invert_colors_opencv, 'threshold': image_process.threshold_colors_opencv}
+
+
+def process_image(img, filter):
+    ##
+    # Apply a filter on an image
+    # @param img to filter
+    # @filter filter to apply on the image
+
+    # check if the input is a numpy array
+    if not isinstance(img, (np.ndarray, np.generic)):
+        return {'error': 'Image is not a numpy array'}
+
+    # check if filter exist
+    if not filter in filters_dictionary:
+        return {'error': 'Unknown filter'}
+
+    return filters_dictionary[filter](img)
 
 
 def on_request(ch, method, props, body):
@@ -29,14 +50,14 @@ def on_request(ch, method, props, body):
     request = str(body)
     decoded_message = msgpack.unpackb(request, object_hook=m.decode)
 
-    # check if the input is a numpy array
-    if not isinstance(decoded_message, (np.ndarray, np.generic)):
-        raise ValueError('Input is not an image')
+    print 'Request received'
+    # check if request if properly formated
+    if ('filter_type' in decoded_message) and ('image' in decoded_message):
+        # Process the image and encode it for response
+        response = process_image(decoded_message['image'], decoded_message['filter_type'])
+    else:
+        response = {'error': 'Request not properly formated'}
 
-    print 'Image received'
-
-    # Process the image and encode it for response
-    response = image_process.invert_colors_opencv(decoded_message)
     encoded_response = msgpack.packb(response, default=m.encode)
 
     ch.basic_publish(exchange='',

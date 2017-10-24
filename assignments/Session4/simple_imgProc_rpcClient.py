@@ -27,8 +27,8 @@ callback_queue = result.method.queue
 # Generate uid and message to send
 corr_id = str(uuid.uuid4())
 img = cv2.imread('../Session3/images/cat_normal.jpg', 1)
-
-encoded_message = msgpack.packb(img, default=m.encode)
+message = {'filter_type': 'threshold', 'image': img}
+encoded_message = msgpack.packb(message, default=m.encode)
 
 # Send message
 channel.basic_publish(exchange='',
@@ -55,6 +55,10 @@ def on_response(ch, method, props, body):
         global response
         response = msgpack.unpackb(str(body), object_hook=m.decode)
         print 'Response'
+
+        # Check if response is success
+        if 'error' in response:
+            raise ValueError(response['error'])
 
         # Display the returned image
         cv2.imshow("Transformed image", response)
