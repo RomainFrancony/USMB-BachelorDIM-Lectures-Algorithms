@@ -4,6 +4,8 @@
 
 import pika
 import os
+import msgpack
+import msgpack_numpy as m
 
 # Setup connection
 amqp_url = "amqp://taumfzlk:P1gefgPdpz3UKtJ7aivorzL8tzpMALuX@lark.rmq.cloudamqp.com/taumfzlk"
@@ -21,15 +23,19 @@ def on_request(ch, method, props, body):
     # @params props
     # @params body
     request = str(body)
-    print 'Receiving request : {request}'.format(request=request)
-    response = 'Fine and you ?'
+    decoded_message = msgpack.unpackb(request, object_hook=m.decode)
+    print 'Receiving request : {request}'.format(request=decoded_message['value'])
+
+    response = {'type': 1, 'value': 'Fine and you ?'}
+    encoded_response = msgpack.packb(response, default=m.encode)
+
     ch.basic_publish(exchange='',
                      routing_key=props.reply_to,
                      properties=pika.BasicProperties(
                          correlation_id=props.correlation_id),
-                     body=str(response))
+                     body=str(encoded_response))
     ch.basic_ack(delivery_tag=method.delivery_tag)
-    print 'Sending response : {response}'.format(response=response)
+    print 'Sending response : {response}'.format(response=response['value'])
 
 
 # setup channel

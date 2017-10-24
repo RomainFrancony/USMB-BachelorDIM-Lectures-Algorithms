@@ -5,6 +5,8 @@
 import os
 import pika
 import uuid
+import msgpack
+import msgpack_numpy as m
 
 # Setup connection
 amqp_url = "amqp://taumfzlk:P1gefgPdpz3UKtJ7aivorzL8tzpMALuX@lark.rmq.cloudamqp.com/taumfzlk"
@@ -22,7 +24,9 @@ callback_queue = result.method.queue
 
 # Generate uid and message to send
 corr_id = str(uuid.uuid4())
-request_msg = 'Hi how are you ?'
+
+request_msg = {'type': 0, 'value': 'hi, how fine?'}
+encoded_message = msgpack.packb(request_msg, default=m.encode)
 
 # Send message
 channel.basic_publish(exchange='',
@@ -30,9 +34,9 @@ channel.basic_publish(exchange='',
                       properties=pika.BasicProperties(
                           reply_to=callback_queue,
                           correlation_id=corr_id, ),
-                      body=request_msg)
+                      body=encoded_message)
 
-print 'Question : {question}'.format(question=request_msg);
+print 'Question : {question}'.format(question=request_msg['value'])
 response = None
 
 
@@ -47,8 +51,9 @@ def on_response(ch, method, props, body):
     # Check if the client ID is the same
     if corr_id == props.correlation_id:
         global response
-        response = str(body)
-        print 'Response : {rep}'.format(rep=response)
+
+        response = msgpack.unpackb(str(body), object_hook=m.decode)
+        print 'Response : {rep}'.format(rep=response['value'])
     else:
         raise ValueError('Correlation ID is not the same')
 
