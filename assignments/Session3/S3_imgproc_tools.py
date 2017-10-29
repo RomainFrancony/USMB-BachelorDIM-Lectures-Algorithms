@@ -9,12 +9,10 @@ img_gray = cv2.imread('./images/cat_small.jpg', 0)
 img_bgr = cv2.imread('./images/cat_normal.jpg', 1)
 
 
-# cv2.imshow("Gray levels image", img_gray)
-# cv2.imshow("BGR image", img_bgr)
-# cv2.waitKey(0)
-
-
 def invert_colors_manual(input_img):
+    ##
+    # Invert color of image without external file
+    # @param input_img : the image to invert
     img_inv = np.zeros(input_img.shape, dtype=np.uint8)
 
     # Gray scale image
@@ -35,16 +33,25 @@ def invert_colors_manual(input_img):
 
 
 def invert_colors_numpy(input_img):
+    ##
+    # Invert color of image using numpy
+    # @param input_img : the image to invert
     img_inv = (255 - input_img)
     return img_inv
 
 
 def invert_colors_opencv(input_img):
+    ##
+    # Invert color of image using opencv
+    # @param input_img : the image to invert
     img_inv = cv2.bitwise_not(input_img)
     return img_inv
 
 
 def threshold_image_manual(input_img):
+    ##
+    # Threshold image without external file
+    # @param input_img : the image to invert
     img_inv = np.zeros(input_img.shape, dtype=np.uint8)
 
     # Gray scale image
@@ -71,8 +78,14 @@ def threshold_image_manual(input_img):
 
 
 def threshold_image_numpy(input_img):
+    ##
+    # Threshold image using numpy
+    # @param input_img : the image to invert
     return (input_img > 127).astype(np.uint8) * 255
 
 
 def threshold_colors_opencv(input_img):
+    ##
+    # Threshold image using opencv
+    # @param input_img : the image to invert
     return cv2.threshold(input_img, 127, 255, cv2.THRESH_BINARY)[1]
